@@ -37,7 +37,9 @@ public class TallerRefuerzo8 {
         String salida;
         boolean bandera = true;
         String cadena = "";
-
+        int numero_computadora;
+        double total_computadora = 0;
+        double total_ventas = 0;
         double descuento;
 
         double porcentaje1 = 1;
@@ -58,6 +60,10 @@ public class TallerRefuerzo8 {
 
             System.out.println("ingrese el tipo de computadora");
             tipo_computadora = entrada.nextInt();
+            
+            System.out.println("ingrese el numero de computadoras que desea"
+                    + " llevar");
+            numero_computadora = entrada.nextInt();
 
             // precio de las computadoras
             if (tipo_computadora == 1) {
@@ -74,22 +80,24 @@ public class TallerRefuerzo8 {
                 }
             }
 
+            total_computadora = precio_computadora * numero_computadora;
+            
             // descueto realizado por el tipo de cliente
             if (tipo_cliente == 1) {
-                descuento = precio_computadora * porcentaje1 / 100;
-                total = precio_computadora - descuento;
+                descuento = total_computadora * porcentaje1 / 100;
+                total = total_computadora - descuento;
             } else {
                 if (tipo_cliente == 2) {
-                    descuento = precio_computadora * porcentaje2 / 100;
-                    total = precio_computadora - descuento;
+                    descuento = total_computadora * porcentaje2 / 100;
+                    total = total_computadora - descuento;
                 } else {
                     if (tipo_cliente == 3) {
-                        descuento = precio_computadora * porcentaje3 / 100;
-                        total = precio_computadora - descuento;
+                        descuento = total_computadora * porcentaje3 / 100;
+                        total = total_computadora - descuento;
                     } else {
                         if (tipo_cliente == 4) {
-                            descuento = precio_computadora * porcentaje4 / 100;
-                            total = precio_computadora - descuento;
+                            descuento = total_computadora * porcentaje4 / 100;
+                            total = total_computadora - descuento;
                         } else {
                             System.out.println("el tipo de empleado es "
                                     + "incorrecto");
@@ -101,9 +109,12 @@ public class TallerRefuerzo8 {
             
             
             cadena = String.format(cadena + "cliente %s, con cedula %s compra"
-                    + " una computadora con precio individual %s y su total a "
-                    + "pagar es %s\n", nombre, cedula, precio_computadora,
-                    total);
+                    + " %s computadora(s) con precio individual %s y su total a "
+                    + "pagar es %s\n", nombre, cedula, numero_computadora,
+                    precio_computadora, total);
+            
+            total_ventas = total_ventas + total;
+                    
             
             
             System.out.println("Ingrese si para salir del proceso");
@@ -116,6 +127,7 @@ public class TallerRefuerzo8 {
         }
         
         System.out.println(cadena);
+        System.out.printf("el total de las ventas es de %s", total_ventas);
 
     }
 }
